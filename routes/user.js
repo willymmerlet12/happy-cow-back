@@ -9,7 +9,6 @@ const User = require("../models/User");
 
 router.post("/user/signup", async (req, res) => {
   try {
-    // Looking in DB if a user has already this email
     const user = await User.findOne({ email: req.fields.email });
 
     if (user) {
