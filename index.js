@@ -9,7 +9,7 @@ const app = express();
 app.use(formidable());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost/happycow", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -43,6 +43,6 @@ app.all("/", (req, res) => {
 app.all("*", (req, res) => {
   res.status(404).json({ message: error.message });
 });
-app.listen(3100, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started");
 });
