@@ -17,7 +17,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 const userRoutes = require("./routes/user");
 app.use(userRoutes);
-const restoRoutes = require("./routes/restaurant");
 
 app.post("/payment", async (req, res) => {
   try {
