@@ -17,6 +17,23 @@ mongoose.connect(process.env.DB_URI, {
 const userRoute = require("./routes/user");
 app.use(userRoute);
 
+app.post("/payment", async (req, res) => {
+  try {
+    const stripeToken = req.fields.stripeToken;
+
+    const response = await stripe.charges.create({
+      amount: 2003,
+      currency: "eur",
+      description: "",
+      source: stripeToken,
+    });
+    console.log(response);
+
+    res.json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 app.get("/", (req, res) => {
   res.json("Hello");
 });
