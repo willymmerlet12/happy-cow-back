@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const cors = require("cors");
 const formidable = require("express-formidable");
 const mongoose = require("mongoose");
@@ -39,7 +40,7 @@ app.get("/", (req, res) => {
 });
 
 app.all("*", (req, res) => {
-  res.status(404).json({ message: "error" });
+  res.status(404).json({ message: error.message });
 });
 
 app.listen(process.env.PORT, () => {
